@@ -10,9 +10,15 @@ const initYearStamp = () => {
 
 const highlightActiveNav = () => {
   const navLinks = document.querySelectorAll('.site-nav__link');
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const normalizedPath = (path) => {
+    if (!path) return '/';
+    return path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+  };
+
+  const currentPath = normalizedPath(window.location.pathname) || '/';
   navLinks.forEach((link) => {
-    if (link.getAttribute('href') === currentPath) {
+    const target = normalizedPath(link.getAttribute('href'));
+    if (target === currentPath) {
       link.classList.add('is-active');
     } else {
       link.classList.remove('is-active');
