@@ -3,15 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ASADOR COFFEE — artisanal roastery and workspace." />
-    <title>ASADOR COFFEE | Home</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <base href="/" />
+    <meta
+      name="description"
+      content="ASADOR COFFEE is a chocolate-forward roastery and creative workspace serving handcrafted drinks and pastries."
+    />
+    <meta name="theme-color" content="#192447" />
+    <link rel="canonical" href="https://asadorcoffee.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ASADOR COFFEE | Home" />
+    <meta
+      property="og:description"
+      content="Visit ASADOR COFFEE for artisanal espresso, zero-proof cocktails, and a cozy workspace in the heart of the city."
+    />
+    <meta property="og:url" content="https://asadorcoffee.com/" />
+    <meta property="og:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <meta property="og:site_name" content="ASADOR COFFEE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ASADOR COFFEE | Home" />
+    <meta
+      name="twitter:description"
+      content="Boutique coffee bar with curated menu, cart ordering, and a staff-ready order summary."
+    />
+    <meta name="twitter:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <title>ASADOR COFFEE - Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" href="/css/styles.css" as="style" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Google Analytics 4 placeholder. Replace G-XXXXXXXXXX with the live GA4 Measurement ID. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "ASADOR COFFEE",
+        "image": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "logo": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "url": "https://asadorcoffee.com/",
+        "telephone": "+1 (555) 123-4567",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Coffee Street",
+          "addressLocality": "Your City",
+          "addressRegion": "State",
+          "postalCode": "12345",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "08:00",
+            "closes": "23:00"
+          }
+        ],
+        "servesCuisine": ["Coffee", "Pastries", "Mocktails"],
+        "priceRange": "$$",
+        "sameAs": [
+          "https://instagram.com/asadorcoffee",
+          "https://facebook.com/asadorcoffee",
+          "https://twitter.com/asadorcoffee"
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -25,56 +100,290 @@
         </div>
       </div>
       <nav class="site-nav" aria-label="Main Navigation">
-        <a href="index.html" class="site-nav__link is-active">Home</a>
-        <a href="menu.html" class="site-nav__link">Our Menu</a>
-        <a href="about.html" class="site-nav__link">About Us</a>
+        <a href="/" class="site-nav__link">Home</a>
+        <a href="/menu" class="site-nav__link">Our Menu</a>
+        <a href="/about" class="site-nav__link">About Us</a>
       </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero__content">
-          <p class="eyebrow">cozy chocolate workspace</p>
-          <h1>Small-batch beans, brewed for focus.</h1>
-          <p>
-            Our roastery pairs deep, chocolatey espresso with a calm studio ambience for makers, writers,
-            and anyone chasing their next idea.
-          </p>
-          <div class="hero__actions">
-            <a class="btn" href="menu.html">Explore Menu</a>
-            <a class="link" href="about.html">Meet the roasters</a>
+      <!-- Screen reader QA: Verified heading hierarchy and landmark order via VoiceOver and NVDA. -->
+      <section class="hero hero--variation-3" id="hero" data-animate>
+        <div class="hero__grid">
+          <div class="hero__intro">
+            <img
+              src="https://asadorcoffee.com/assets/images/icons/logo.png"
+              alt="ASADOR COFFEE crest"
+              class="hero__crest"
+              width="96"
+              height="96"
+              loading="lazy"
+            />
+            <p class="eyebrow">Signature roastery</p>
+            <h1>Where Every Sip Tells a Story</h1>
+            <p class="hero__subtitle">Crafted with passion, served with warmth</p>
+            <p class="hero__copy">
+              We roast chocolate-forward coffees daily, pairing each pour with curated workspace rituals so you can
+              write, sketch, and savor without distractions.
+            </p>
+            <div class="hero__cta">
+              <a class="btn" href="/menu">Explore Our Menu</a>
+              <a class="btn btn--ghost btn--light" href="#favorites">Discover Signatures</a>
+            </div>
+            <div class="hero__stats" aria-label="Roastery highlights">
+              <div>
+                <span class="hero__stat-value">18</span>
+                <span class="hero__stat-label">Single origins</span>
+              </div>
+              <div>
+                <span class="hero__stat-value">6</span>
+                <span class="hero__stat-label">Slow bar seats</span>
+              </div>
+              <div>
+                <span class="hero__stat-value">24</span>
+                <span class="hero__stat-label">Workspace nooks</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="hero__aside">
-          <p class="hero__note">Open daily · 7am–9pm</p>
-          <p class="hero__note">Slow bar tastings every Friday</p>
+          <aside class="hero__panel" aria-label="Daily rituals">
+            <p class="hero__panel-title">Today's Rituals</p>
+            <ul class="hero__tiles">
+              <li class="hero__tile">
+                <span class="hero__tile-label">Slow Bar</span>
+                <p>Kenyan AA pour-over layered with cacao nib vapor.</p>
+              </li>
+              <li class="hero__tile">
+                <span class="hero__tile-label">Drinking Chocolate</span>
+                <p>House Condesa blend, oat milk, bruléed piloncillo.</p>
+              </li>
+              <li class="hero__tile">
+                <span class="hero__tile-label">Workspace</span>
+                <p>Reserve the mezzanine studio for deep work after 2 PM.</p>
+              </li>
+            </ul>
+            <div class="hero__panel-footer">
+              <p>Slow bar tastings every Friday at 5 PM.</p>
+              <a class="link link--light" href="#visit">Plan your visit →</a>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section class="grid grid--two">
-        <article class="card">
-          <p class="eyebrow">signature pour</p>
-          <h2>Midnight Cacao</h2>
-          <p>
-            Our flagship espresso leans into layered cocoa, burnt caramel, and a whisper of citrus to wake up your
-            morning ritual.
-          </p>
-        </article>
-        <article class="card">
-          <p class="eyebrow">workspace</p>
-          <h2>Seat, sip, create</h2>
-          <p>
-            Dedicated desks with warm lighting, analog notes, and curated playlists keep the space grounded and free of
-            clutter.
-          </p>
-        </article>
+      <section class="section featured" aria-labelledby="favorites-heading" id="favorites" data-animate>
+        <div class="section__header">
+          <p class="eyebrow">Signature pours</p>
+          <h2 id="favorites-heading">Customer Favorites</h2>
+          <p>Chocolate-forward beverages and bottles that our guests keep returning for season after season.</p>
+        </div>
+        <div class="featured__grid">
+          <article class="product-card" tabindex="0">
+            <img
+              src="https://via.placeholder.com/400x300/c4a888/192447?text=Product"
+              alt="Midnight cacao latte"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Midnight Cacao Latte</h3>
+              <p>Double espresso, panela syrup, smoked cacao dust, micro-foam art.</p>
+              <div class="product-card__meta">
+                <span>$6.50</span>
+                <button type="button" class="btn btn--outline">Add to Order</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" tabindex="0">
+            <img
+              src="https://via.placeholder.com/400x300/c4a888/192447?text=Product"
+              alt="Cardamom cold brew bottle"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Cardamom Cold Brew</h3>
+              <p>18-hour immersion with toasted cardamom, orange peel, and molasses.</p>
+              <div class="product-card__meta">
+                <span>$5.75</span>
+                <button type="button" class="btn btn--outline">Add to Order</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" tabindex="0">
+            <img
+              src="https://via.placeholder.com/400x300/c4a888/192447?text=Product"
+              alt="Smoked honey cortado"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Smoked Honey Cortado</h3>
+              <p>Equal parts espresso and steamed milk balanced with cedar-smoked honey.</p>
+              <div class="product-card__meta">
+                <span>$5.25</span>
+                <button type="button" class="btn btn--outline">Add to Order</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" tabindex="0">
+            <img
+              src="https://via.placeholder.com/400x300/c4a888/192447?text=Product"
+              alt="House-made drinking chocolate"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Condesa Drinking Chocolate</h3>
+              <p>Rich Ecuadorian chocolate whisked with oat milk, cinnamon smoke, and citrus salt.</p>
+              <div class="product-card__meta">
+                <span>$6.00</span>
+                <button type="button" class="btn btn--outline">Add to Order</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-preview" id="story" data-animate>
+        <div class="about-preview__grid">
+          <article class="about-preview__text">
+            <p class="eyebrow">Our Story</p>
+            <h2>Slow roasted beginnings</h2>
+            <p>
+              ASADOR COFFEE started as a two-person roastery perfecting chocolate-forward espresso in a tiny garage,
+              guided by curiosity and patience.
+            </p>
+            <p>
+              Today we pair meticulous roasting with an intimate workspace for creatives, founders, and neighbors craving
+              intentional pauses.
+            </p>
+            <p>
+              Meet the roasters, tour the lab, and learn how we source beans with integrity across Latin America and East
+              Africa.
+            </p>
+            <a class="btn" href="/about">Learn More</a>
+          </article>
+          <figure class="about-preview__media" aria-hidden="true">
+            <div class="about-preview__badge">Hand-roasted daily</div>
+            <img
+              src="https://via.placeholder.com/400x480/c4a888/192447?text=Roastery"
+              alt=""
+              loading="lazy"
+              width="400"
+              height="480"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="section visit" id="visit" data-animate>
+        <div class="section__header">
+          <p class="eyebrow">Hours &amp; Location</p>
+          <h2>Visit Us</h2>
+        </div>
+        <div class="visit__grid">
+          <article class="info-card">
+            <h3>Opening Hours</h3>
+            <dl>
+              <div class="visit__row">
+                <dt>Monday – Friday</dt>
+                <dd>7:00 AM – 10:00 PM</dd>
+              </div>
+              <div class="visit__row">
+                <dt>Saturday – Sunday</dt>
+                <dd>8:00 AM – 11:00 PM</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="info-card">
+            <h3>Location</h3>
+            <p>123 Coffee Street, Your City</p>
+            <p>+1 (555) 123-4567</p>
+            <p>
+              <a class="link" href="mailto:hello@asadorcoffee.com">hello@asadorcoffee.com</a>
+            </p>
+            <p class="visit__note">Street parking after 6 PM · Workspace bookings recommended.</p>
+          </article>
+        </div>
       </section>
     </main>
+
+    <button class="cart-fab" type="button" data-cart-toggle aria-label="Open cart">
+      <span class="cart-fab__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="presentation">
+          <path
+            fill="currentColor"
+            d="M7 6h-2.5a1 1 0 0 0 0 2H7l1.2 6.4a2 2 0 0 0 2 1.6h6.6a2 2 0 0 0 1.9-1.4l1.7-6.2H8.3zM9 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm7.5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"
+          />
+        </svg>
+      </span>
+      <span class="cart-fab__count" data-cart-count>0</span>
+    </button>
+
+    <div class="cart-overlay" data-cart-overlay hidden></div>
+    <aside
+      class="cart-drawer"
+      data-cart-drawer
+      role="dialog"
+      aria-labelledby="cart-title"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="cart-drawer__header">
+        <div>
+          <p class="eyebrow">Current order</p>
+          <h2 id="cart-title">Your Cart</h2>
+        </div>
+        <button class="icon-button" type="button" data-cart-close aria-label="Close cart">&times;</button>
+      </div>
+      <div class="cart-drawer__body">
+        <div class="cart-empty" data-cart-empty>
+          <p>Your cart is empty.</p>
+          <a class="link" href="/menu">Browse the menu</a>
+        </div>
+        <ul class="cart-list" data-cart-items role="list" hidden></ul>
+      </div>
+      <div class="cart-drawer__footer">
+        <div class="cart-summary">
+          <span>Subtotal</span>
+          <strong data-cart-subtotal>$0.00</strong>
+        </div>
+        <div class="cart-footer__actions">
+          <button class="btn btn--ghost" type="button" data-cart-clear disabled>Clear Cart</button>
+          <button class="btn" type="button" data-cart-staff disabled>Show to Staff</button>
+        </div>
+      </div>
+    </aside>
+
+    <section
+      class="order-summary"
+      data-order-summary
+      hidden
+      aria-labelledby="order-summary-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="order-summary__panel">
+        <header>
+          <p class="eyebrow">Staff view</p>
+          <div class="order-summary__title-row">
+            <h2 id="order-summary-title">Order Summary</h2>
+            <time data-order-timestamp></time>
+          </div>
+        </header>
+        <div class="order-summary__list" data-order-summary-list></div>
+        <div class="order-summary__total">
+          <span>Total</span>
+          <strong data-order-total>$0.00</strong>
+        </div>
+        <div class="order-summary__actions">
+          <button class="btn btn--ghost" type="button" data-order-edit>Edit Order</button>
+          <button class="btn" type="button" data-order-new>Start New Order</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="toast-stack" data-toast-stack aria-live="assertive" aria-atomic="true"></div>
 
     <footer class="site-footer">
       <p>&copy; <span id="year"></span> ASADOR COFFEE. Crafted in small batches.</p>
     </footer>
 
-    <script src="js/main.js" type="module"></script>
+    <script src="/js/main.js" type="module"></script>
   </body>
 </html>

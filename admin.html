@@ -3,15 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ASADOR COFFEE admin panel for managing menu items." />
-    <title>ASADOR COFFEE | Admin Panel</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <base href="/" />
+    <meta name="description" content="Staff-only dashboard for updating ASADOR COFFEE menu items." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#192447" />
+    <link rel="canonical" href="https://asadorcoffee.com/admin" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ASADOR COFFEE | Admin Panel" />
+    <meta
+      property="og:description"
+      content="Securely add, edit, or delete ASADOR COFFEE menu items with live stats and import/export tooling."
+    />
+    <meta property="og:url" content="https://asadorcoffee.com/admin" />
+    <meta property="og:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <meta property="og:site_name" content="ASADOR COFFEE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ASADOR COFFEE | Admin Panel" />
+    <meta
+      name="twitter:description"
+      content="Internal dashboard for keeping the ASADOR COFFEE digital menu in sync."
+    />
+    <meta name="twitter:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <title>ASADOR COFFEE - Admin Panel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" href="/css/styles.css" as="style" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Google Analytics 4 placeholder. Replace G-XXXXXXXXXX with the live GA4 Measurement ID. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "ASADOR COFFEE",
+        "image": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "logo": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "url": "https://asadorcoffee.com/",
+        "telephone": "+1 (555) 123-4567",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Coffee Street",
+          "addressLocality": "Your City",
+          "addressRegion": "State",
+          "postalCode": "12345",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "08:00",
+            "closes": "23:00"
+          }
+        ],
+        "servesCuisine": ["Coffee", "Pastries", "Mocktails"],
+        "priceRange": "$$",
+        "sameAs": [
+          "https://instagram.com/asadorcoffee",
+          "https://facebook.com/asadorcoffee",
+          "https://twitter.com/asadorcoffee"
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -25,57 +98,308 @@
         </div>
       </div>
       <nav class="site-nav" aria-label="Main Navigation">
-        <a href="index.html" class="site-nav__link">Home</a>
-        <a href="menu.html" class="site-nav__link">Our Menu</a>
-        <a href="about.html" class="site-nav__link">About Us</a>
+        <a href="/" class="site-nav__link">Home</a>
+        <a href="/menu" class="site-nav__link">Our Menu</a>
+        <a href="/about" class="site-nav__link">About Us</a>
       </nav>
     </header>
 
-    <main>
-      <section class="page-header">
-        <p class="eyebrow">internal</p>
-        <h1>Admin panel</h1>
-        <p>Manage menu inventory and featured highlights from one quiet dashboard.</p>
-      </section>
-
-      <section class="admin-panel">
-        <form class="admin-form" id="admin-form">
-          <div class="form-group">
-            <label for="item-name">Item name</label>
-            <input id="item-name" name="name" type="text" required />
-          </div>
-          <div class="form-group">
-            <label for="item-price">Price (USD)</label>
-            <input id="item-price" name="price" type="number" step="0.5" min="0" required />
-          </div>
-          <div class="form-group">
-            <label for="item-category">Category</label>
-            <select id="item-category" name="category" required>
-              <option value="espresso">Espresso</option>
-              <option value="brew">Slow Brew</option>
-              <option value="seasonal">Seasonal</option>
-              <option value="food">Bites</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="item-notes">Tasting notes</label>
-            <textarea id="item-notes" name="notes" rows="3" required></textarea>
-          </div>
-          <button class="btn" type="submit">Save item</button>
-        </form>
-
-        <div class="admin-list">
-          <h2>Draft menu</h2>
-          <ul id="admin-items"></ul>
+    <main class="admin-main" data-admin-root>
+      <!-- Screen reader QA: NVDA verified form labels announce before each field; modals trap focus via JS. -->
+      <section class="admin-login" data-admin-login data-animate>
+        <div class="admin-login__card">
+          <p class="eyebrow">staff only</p>
+          <h1>Admin access</h1>
+          <p>Enter the daily passphrase to continue managing the digital menu.</p>
+          <form data-admin-login-form>
+            <label class="form-label" for="admin-password">Access code</label>
+            <input
+              type="password"
+              id="admin-password"
+              name="admin-password"
+              autocomplete="current-password"
+              required
+              minlength="6"
+            />
+            <p class="form-hint" data-admin-login-error hidden>Incorrect code. Please try again or verify with management.</p>
+            <button class="btn" type="submit">Login</button>
+          </form>
         </div>
       </section>
+
+      <section class="admin-dashboard" data-admin-dashboard hidden data-animate>
+        <header class="admin-dashboard__header">
+          <div>
+            <p class="eyebrow">internal tools</p>
+            <h1>ASADOR COFFEE — Admin Panel</h1>
+            <p>Update the menu, review stats, and keep the bar team aligned.</p>
+          </div>
+          <div class="admin-dashboard__actions">
+            <button class="btn btn--ghost btn--light" type="button" data-admin-export>Export JSON</button>
+            <label class="btn btn--ghost btn--light admin-import" for="admin-import-input" role="button" tabindex="0">Import JSON</label>
+            <input type="file" id="admin-import-input" accept="application/json" data-admin-import hidden />
+            <button class="btn btn--ghost btn--light" type="button" data-admin-logout>Logout</button>
+          </div>
+        </header>
+
+        <section class="admin-stats">
+          <div class="admin-stats__grid">
+            <article class="admin-stats__card">
+              <p class="eyebrow">Total items</p>
+              <h3 data-admin-stat-total>0</h3>
+              <p>Live items currently visible on the public menu.</p>
+            </article>
+            <article class="admin-stats__card">
+              <p class="eyebrow">Available today</p>
+              <h3 data-admin-stat-available>0</h3>
+              <p>Items marked as available for guests.</p>
+            </article>
+            <article class="admin-stats__card">
+              <p class="eyebrow">Categories</p>
+              <h3 data-admin-stat-categories>0</h3>
+              <p>Active categories represented in the menu.</p>
+            </article>
+          </div>
+          <div class="admin-stats__categories">
+            <div class="admin-stats__categories-header">
+              <h3>Items per category</h3>
+              <p>Snapshot of how offerings are distributed.</p>
+            </div>
+            <ul data-admin-category-stats></ul>
+          </div>
+        </section>
+
+        <section class="admin-management">
+          <div class="admin-management__top">
+            <div>
+              <p class="eyebrow">Menu items</p>
+              <h2>Inventory</h2>
+            </div>
+            <button class="btn" type="button" data-admin-open-add>+ Add New Item</button>
+          </div>
+          <div class="admin-management__filters">
+            <label class="form-label" for="admin-search">Search</label>
+            <input
+              id="admin-search"
+              type="search"
+              placeholder="Search by name or category"
+              data-admin-search
+              aria-label="Search menu items"
+            />
+            <label class="form-label" for="admin-filter">Category</label>
+            <select id="admin-filter" data-admin-filter aria-label="Filter by category">
+              <option value="all">All categories</option>
+            </select>
+          </div>
+
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th scope="col">Image</th>
+                  <th scope="col">
+                    <button class="sort-button" type="button" data-sort="name">
+                      Name
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button class="sort-button" type="button" data-sort="category">
+                      Category
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button class="sort-button" type="button" data-sort="price">
+                      Price
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">Sizes</th>
+                  <th scope="col">Availability</th>
+                  <th scope="col" class="admin-table__actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody data-admin-table-body></tbody>
+            </table>
+            <div class="admin-empty" data-admin-empty hidden>
+              <p>No items match the current filters. Adjust your search or add a new entry.</p>
+            </div>
+          </div>
+          <div class="admin-loading" data-admin-loading role="status" aria-live="polite" hidden>
+            <span class="admin-loading__spinner" aria-hidden="true"></span>
+            <span>Preparing inventory…</span>
+          </div>
+
+          <div class="admin-pagination" data-admin-pagination>
+            <button class="btn btn--ghost" type="button" data-page-prev disabled aria-label="Previous page">Prev</button>
+            <span data-page-status>Page 1</span>
+            <button class="btn btn--ghost" type="button" data-page-next disabled aria-label="Next page">Next</button>
+          </div>
+        </section>
+      </section>
     </main>
+
+    <div class="admin-modal" data-admin-form-modal hidden aria-hidden="true">
+      <div class="admin-modal__panel" role="dialog" aria-modal="true" aria-labelledby="admin-form-title">
+        <div class="admin-modal__header">
+          <div>
+            <p class="eyebrow" data-admin-form-eyebrow>New item</p>
+            <h2 id="admin-form-title" data-admin-form-title>Add Menu Item</h2>
+          </div>
+          <button class="icon-button" type="button" data-admin-close-form aria-label="Close form">&times;</button>
+        </div>
+        <form data-admin-item-form>
+          <input type="hidden" name="itemId" />
+          <label class="form-label" for="item-name">Name</label>
+          <input id="item-name" name="name" type="text" required />
+
+          <label class="form-label" for="item-description">Description</label>
+          <textarea id="item-description" name="description" rows="3" required></textarea>
+
+          <label class="form-label" for="item-category">Category</label>
+          <select id="item-category" name="category" required></select>
+
+          <label class="form-label" for="item-price">Base price (USD)</label>
+          <input id="item-price" name="price" type="number" step="0.5" min="0" required />
+
+          <fieldset class="size-fieldset">
+            <legend>Sizes &amp; pricing</legend>
+            <p>Add prices for each size you want to offer.</p>
+            <div class="size-grid">
+              <label class="size-control">
+                <input type="checkbox" data-size-checkbox="Small" />
+                <span>Small</span>
+                <input type="number" step="0.5" min="0" data-size-price="Small" placeholder="0.00" disabled />
+              </label>
+              <label class="size-control">
+                <input type="checkbox" data-size-checkbox="Medium" />
+                <span>Medium</span>
+                <input type="number" step="0.5" min="0" data-size-price="Medium" placeholder="0.00" disabled />
+              </label>
+              <label class="size-control">
+                <input type="checkbox" data-size-checkbox="Large" />
+                <span>Large</span>
+                <input type="number" step="0.5" min="0" data-size-price="Large" placeholder="0.00" disabled />
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="form-label" for="item-image">Image URL</label>
+          <input id="item-image" name="image" type="url" placeholder="https://" required />
+
+          <label class="checkbox">
+            <input type="checkbox" name="available" checked />
+            <span>Available for guests</span>
+          </label>
+
+          <div class="admin-modal__actions">
+            <button class="btn btn--ghost" type="button" data-admin-close-form>Cancel</button>
+            <button class="btn" type="submit">Save Item</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="admin-modal" data-admin-delete-modal hidden aria-hidden="true">
+      <div class="admin-modal__panel" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+        <div class="admin-modal__header">
+          <div>
+            <p class="eyebrow">Confirm delete</p>
+            <h2 id="delete-modal-title">Remove item</h2>
+          </div>
+          <button class="icon-button" type="button" data-admin-close-delete aria-label="Close dialog">&times;</button>
+        </div>
+        <p data-admin-delete-message>Are you sure you want to delete this item?</p>
+        <div class="admin-modal__actions">
+          <button class="btn btn--ghost" type="button" data-admin-close-delete>Cancel</button>
+          <button class="btn btn--danger" type="button" data-admin-confirm-delete>Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="cart-fab" type="button" data-cart-toggle aria-label="Open cart">
+      <span class="cart-fab__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="presentation">
+          <path
+            fill="currentColor"
+            d="M7 6h-2.5a1 1 0 0 0 0 2H7l1.2 6.4a2 2 0 0 0 2 1.6h6.6a2 2 0 0 0 1.9-1.4l1.7-6.2H8.3zM9 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm7.5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"
+          />
+        </svg>
+      </span>
+      <span class="cart-fab__count" data-cart-count>0</span>
+    </button>
+
+    <div class="cart-overlay" data-cart-overlay hidden></div>
+    <aside
+      class="cart-drawer"
+      data-cart-drawer
+      role="dialog"
+      aria-labelledby="cart-title"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="cart-drawer__header">
+        <div>
+          <p class="eyebrow">Current order</p>
+          <h2 id="cart-title">Your Cart</h2>
+        </div>
+        <button class="icon-button" type="button" data-cart-close aria-label="Close cart">&times;</button>
+      </div>
+      <div class="cart-drawer__body">
+        <div class="cart-empty" data-cart-empty>
+          <p>Your cart is empty.</p>
+          <a class="link" href="/menu">Browse the menu</a>
+        </div>
+        <ul class="cart-list" data-cart-items role="list" hidden></ul>
+      </div>
+      <div class="cart-drawer__footer">
+        <div class="cart-summary">
+          <span>Subtotal</span>
+          <strong data-cart-subtotal>$0.00</strong>
+        </div>
+        <div class="cart-footer__actions">
+          <button class="btn btn--ghost" type="button" data-cart-clear disabled>Clear Cart</button>
+          <button class="btn" type="button" data-cart-staff disabled>Show to Staff</button>
+        </div>
+      </div>
+    </aside>
+
+    <section
+      class="order-summary"
+      data-order-summary
+      hidden
+      aria-labelledby="order-summary-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="order-summary__panel">
+        <header>
+          <p class="eyebrow">Staff view</p>
+          <div class="order-summary__title-row">
+            <h2 id="order-summary-title">Order Summary</h2>
+            <time data-order-timestamp></time>
+          </div>
+        </header>
+        <div class="order-summary__list" data-order-summary-list></div>
+        <div class="order-summary__total">
+          <span>Total</span>
+          <strong data-order-total>$0.00</strong>
+        </div>
+        <div class="order-summary__actions">
+          <button class="btn btn--ghost" type="button" data-order-edit>Edit Order</button>
+          <button class="btn" type="button" data-order-new>Start New Order</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="toast-stack" data-toast-stack aria-live="assertive" aria-atomic="true"></div>
 
     <footer class="site-footer">
       <p>&copy; <span id="year"></span> ASADOR COFFEE. Crafted in small batches.</p>
     </footer>
 
-    <script src="js/main.js" type="module"></script>
-    <script src="js/admin.js" type="module"></script>
+    <script src="/js/main.js" type="module"></script>
+    <script src="/js/admin.js" type="module"></script>
   </body>
 </html>

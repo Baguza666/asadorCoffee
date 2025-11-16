@@ -3,20 +3,95 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ASADOR COFFEE menu — signature drinks and seasonal bites." />
-    <title>ASADOR COFFEE | Our Menu</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <base href="/" />
+    <meta
+      name="description"
+      content="Filter 19 categories of handcrafted drinks, breakfasts, and desserts at ASADOR COFFEE."
+    />
+    <meta name="theme-color" content="#192447" />
+    <link rel="canonical" href="https://asadorcoffee.com/menu" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ASADOR COFFEE | Our Menu" />
+    <meta
+      property="og:description"
+      content="Discover chocolate-forward espresso, zero-proof cocktails, and sweet bites crafted daily at ASADOR COFFEE."
+    />
+    <meta property="og:url" content="https://asadorcoffee.com/menu" />
+    <meta property="og:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <meta property="og:site_name" content="ASADOR COFFEE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ASADOR COFFEE | Our Menu" />
+    <meta
+      name="twitter:description"
+      content="Browse guest-favorite drinks and bites, filter by cravings, and add to your order in seconds."
+    />
+    <meta name="twitter:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <title>ASADOR COFFEE - Our Menu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" href="/css/styles.css" as="style" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Google Analytics 4 placeholder. Replace G-XXXXXXXXXX with the live GA4 Measurement ID. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "ASADOR COFFEE",
+        "image": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "logo": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "url": "https://asadorcoffee.com/",
+        "telephone": "+1 (555) 123-4567",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Coffee Street",
+          "addressLocality": "Your City",
+          "addressRegion": "State",
+          "postalCode": "12345",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "08:00",
+            "closes": "23:00"
+          }
+        ],
+        "servesCuisine": ["Coffee", "Pastries", "Mocktails"],
+        "priceRange": "$$",
+        "sameAs": [
+          "https://instagram.com/asadorcoffee",
+          "https://facebook.com/asadorcoffee",
+          "https://twitter.com/asadorcoffee"
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header">
       <div class="brand">
-        <a href="/">
+        <a href="/" aria-label="ASADOR COFFEE home">
           <img src="https://asadorcoffee.com/assets/images/icons/logo.png" alt="ASADOR COFFEE" class="brand__logo" />
         </a>
         <div class="brand__text">
@@ -25,36 +100,138 @@
         </div>
       </div>
       <nav class="site-nav" aria-label="Main Navigation">
-        <a href="index.html" class="site-nav__link">Home</a>
-        <a href="menu.html" class="site-nav__link is-active">Our Menu</a>
-        <a href="about.html" class="site-nav__link">About Us</a>
+        <a href="/" class="site-nav__link">Home</a>
+        <a href="/menu" class="site-nav__link">Our Menu</a>
+        <a href="/about" class="site-nav__link">About Us</a>
       </nav>
     </header>
 
-    <main>
-      <section class="page-header">
-        <p class="eyebrow">slow bar curation</p>
-        <h1>Pour-over flight, espresso lab, crafted bites.</h1>
-        <p>Each drink is roasted in-house, brewed to order, and paired with thoughtful accompaniments.</p>
+    <main class="menu-page" id="top">
+      <!-- Screen reader QA: VoiceOver confirms search, filters, and grid announce updates via aria-live. -->
+      <section class="menu-hero section" data-animate>
+        <p class="eyebrow">curated tasting bar</p>
+        <div class="menu-hero__content">
+          <div>
+            <h1>Our Menu</h1>
+            <p>
+              Hand-pulled espresso, nuanced mocktails, and petite bites are crafted to order. Filter the collection or search
+              for your current craving.
+            </p>
+          </div>
+          <form class="menu-search" role="search" aria-label="Menu search" data-menu-search>
+            <label for="menu-search-input" class="sr-only">Search menu items</label>
+            <input
+              type="search"
+              id="menu-search-input"
+              name="menu-search"
+              placeholder="Search by name or notes"
+              autocomplete="off"
+              inputmode="search"
+            />
+            <span aria-hidden="true" class="menu-search__icon">⌕</span>
+          </form>
+        </div>
       </section>
 
-      <section class="menu" id="menu">
-        <div class="menu__filters" role="tablist" aria-label="Menu categories">
-          <button class="chip is-active" data-category="all">All</button>
-          <button class="chip" data-category="espresso">Espresso</button>
-          <button class="chip" data-category="brew">Slow Brew</button>
-          <button class="chip" data-category="seasonal">Seasonal</button>
-          <button class="chip" data-category="food">Bites</button>
+      <section class="menu-controls section" aria-label="Menu categories" data-animate>
+        <div class="menu-categories" data-category-container role="tablist" aria-label="Filter menu categories"></div>
+      </section>
+
+      <section class="menu-grid-section" aria-live="polite" data-animate>
+        <div class="menu-loading" data-menu-loading role="status" aria-live="polite">
+          <span class="menu-loading__spinner" aria-hidden="true"></span>
+          <span>Curating selections…</span>
         </div>
-        <div class="menu__grid" aria-live="polite"></div>
+        <div class="menu-grid" data-menu-grid></div>
+        <div class="menu-empty" data-menu-empty hidden>
+          <p class="menu-empty__title">No items found</p>
+          <p>Try adjusting your search or selecting a different category to explore more of the menu.</p>
+        </div>
       </section>
     </main>
+
+    <button class="cart-fab" type="button" data-cart-toggle aria-label="Open cart">
+      <span class="cart-fab__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="presentation">
+          <path
+            fill="currentColor"
+            d="M7 6h-2.5a1 1 0 0 0 0 2H7l1.2 6.4a2 2 0 0 0 2 1.6h6.6a2 2 0 0 0 1.9-1.4l1.7-6.2H8.3zM9 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm7.5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"
+          />
+        </svg>
+      </span>
+      <span class="cart-fab__count" data-cart-count>0</span>
+    </button>
+
+    <div class="cart-overlay" data-cart-overlay hidden></div>
+    <aside
+      class="cart-drawer"
+      data-cart-drawer
+      role="dialog"
+      aria-labelledby="cart-title"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="cart-drawer__header">
+        <div>
+          <p class="eyebrow">Current order</p>
+          <h2 id="cart-title">Your Cart</h2>
+        </div>
+        <button class="icon-button" type="button" data-cart-close aria-label="Close cart">&times;</button>
+      </div>
+      <div class="cart-drawer__body">
+        <div class="cart-empty" data-cart-empty>
+          <p>Your cart is empty.</p>
+          <a class="link" href="/menu">Browse the menu</a>
+        </div>
+        <ul class="cart-list" data-cart-items role="list" hidden></ul>
+      </div>
+      <div class="cart-drawer__footer">
+        <div class="cart-summary">
+          <span>Subtotal</span>
+          <strong data-cart-subtotal>$0.00</strong>
+        </div>
+        <div class="cart-footer__actions">
+          <button class="btn btn--ghost" type="button" data-cart-clear disabled>Clear Cart</button>
+          <button class="btn" type="button" data-cart-staff disabled>Show to Staff</button>
+        </div>
+      </div>
+    </aside>
+
+    <section
+      class="order-summary"
+      data-order-summary
+      hidden
+      aria-labelledby="order-summary-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="order-summary__panel">
+        <header>
+          <p class="eyebrow">Staff view</p>
+          <div class="order-summary__title-row">
+            <h2 id="order-summary-title">Order Summary</h2>
+            <time data-order-timestamp></time>
+          </div>
+        </header>
+        <div class="order-summary__list" data-order-summary-list></div>
+        <div class="order-summary__total">
+          <span>Total</span>
+          <strong data-order-total>$0.00</strong>
+        </div>
+        <div class="order-summary__actions">
+          <button class="btn btn--ghost" type="button" data-order-edit>Edit Order</button>
+          <button class="btn" type="button" data-order-new>Start New Order</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="toast-stack" data-toast-stack aria-live="assertive" aria-atomic="true"></div>
 
     <footer class="site-footer">
       <p>&copy; <span id="year"></span> ASADOR COFFEE. Crafted in small batches.</p>
     </footer>
 
-    <script src="js/main.js" type="module"></script>
-    <script type="module" src="js/menu.js"></script>
+    <script src="/js/main.js" type="module"></script>
+    <script type="module" src="/js/menu.js"></script>
   </body>
 </html>
