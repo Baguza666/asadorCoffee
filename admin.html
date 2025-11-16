@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ASADOR COFFEE admin panel for managing menu items." />
+    <title>ASADOR COFFEE | Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <a href="/">
+          <img src="https://asadorcoffee.com/assets/images/icons/logo.png" alt="ASADOR COFFEE" class="brand__logo" />
+        </a>
+        <div class="brand__text">
+          <span class="brand__name">ASADOR COFFEE</span>
+          <span class="brand__tag">Artisanal Roastery</span>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="menu.html" class="site-nav__link">Our Menu</a>
+        <a href="about.html" class="site-nav__link">About Us</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-header">
+        <p class="eyebrow">internal</p>
+        <h1>Admin panel</h1>
+        <p>Manage menu inventory and featured highlights from one quiet dashboard.</p>
+      </section>
+
+      <section class="admin-panel">
+        <form class="admin-form" id="admin-form">
+          <div class="form-group">
+            <label for="item-name">Item name</label>
+            <input id="item-name" name="name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="item-price">Price (USD)</label>
+            <input id="item-price" name="price" type="number" step="0.5" min="0" required />
+          </div>
+          <div class="form-group">
+            <label for="item-category">Category</label>
+            <select id="item-category" name="category" required>
+              <option value="espresso">Espresso</option>
+              <option value="brew">Slow Brew</option>
+              <option value="seasonal">Seasonal</option>
+              <option value="food">Bites</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="item-notes">Tasting notes</label>
+            <textarea id="item-notes" name="notes" rows="3" required></textarea>
+          </div>
+          <button class="btn" type="submit">Save item</button>
+        </form>
+
+        <div class="admin-list">
+          <h2>Draft menu</h2>
+          <ul id="admin-items"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> ASADOR COFFEE. Crafted in small batches.</p>
+    </footer>
+
+    <script src="js/main.js" type="module"></script>
+    <script src="js/admin.js" type="module"></script>
+  </body>
+</html>
