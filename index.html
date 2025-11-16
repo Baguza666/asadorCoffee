@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ASADOR COFFEE — artisanal roastery and workspace." />
+    <title>ASADOR COFFEE | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <a href="/">
+          <img src="https://asadorcoffee.com/assets/images/icons/logo.png" alt="ASADOR COFFEE" class="brand__logo" />
+        </a>
+        <div class="brand__text">
+          <span class="brand__name">ASADOR COFFEE</span>
+          <span class="brand__tag">Artisanal Roastery</span>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="index.html" class="site-nav__link is-active">Home</a>
+        <a href="menu.html" class="site-nav__link">Our Menu</a>
+        <a href="about.html" class="site-nav__link">About Us</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero__content">
+          <p class="eyebrow">cozy chocolate workspace</p>
+          <h1>Small-batch beans, brewed for focus.</h1>
+          <p>
+            Our roastery pairs deep, chocolatey espresso with a calm studio ambience for makers, writers,
+            and anyone chasing their next idea.
+          </p>
+          <div class="hero__actions">
+            <a class="btn" href="menu.html">Explore Menu</a>
+            <a class="link" href="about.html">Meet the roasters</a>
+          </div>
+        </div>
+        <div class="hero__aside">
+          <p class="hero__note">Open daily · 7am–9pm</p>
+          <p class="hero__note">Slow bar tastings every Friday</p>
+        </div>
+      </section>
+
+      <section class="grid grid--two">
+        <article class="card">
+          <p class="eyebrow">signature pour</p>
+          <h2>Midnight Cacao</h2>
+          <p>
+            Our flagship espresso leans into layered cocoa, burnt caramel, and a whisper of citrus to wake up your
+            morning ritual.
+          </p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">workspace</p>
+          <h2>Seat, sip, create</h2>
+          <p>
+            Dedicated desks with warm lighting, analog notes, and curated playlists keep the space grounded and free of
+            clutter.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> ASADOR COFFEE. Crafted in small batches.</p>
+    </footer>
+
+    <script src="js/main.js" type="module"></script>
+  </body>
+</html>
