@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ASADOR COFFEE — artisanal roastery and workspace." />
+    <title>ASADOR COFFEE | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <a href="/">
+          <img src="https://asadorcoffee.com/assets/images/icons/logo.png" alt="ASADOR COFFEE" class="brand__logo" />
+        </a>
+        <div class="brand__text">
+          <span class="brand__name">ASADOR COFFEE</span>
+          <span class="brand__tag">Artisanal Roastery</span>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="index.html" class="site-nav__link is-active">Home</a>
+        <a href="menu.html" class="site-nav__link">Our Menu</a>
+        <a href="about.html" class="site-nav__link">About Us</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero__content">
+          <img
+            src="https://asadorcoffee.com/assets/images/icons/logo.png"
+            alt="ASADOR COFFEE crest"
+            class="hero__logo"
+            width="96"
+            height="96"
+            loading="lazy"
+          />
+          <p class="eyebrow">Where rituals begin</p>
+          <h1>Where Every Sip Tells a Story</h1>
+          <p class="hero__subtitle">Crafted with passion, served with warmth</p>
+          <p>
+            Our roastery is a sanctuary for thinkers and makers. Sink into brass-accented corners, sip chocolate-forward
+            espresso, and feel the calm set in as we roast, brew, and serve with intention.
+          </p>
+          <div class="hero__actions">
+            <a class="btn" href="menu.html">Explore Our Menu</a>
+            <a class="btn btn--ghost" href="#visit">Plan Your Visit</a>
+          </div>
+        </div>
+        <div class="hero__aside" aria-label="Highlights">
+          <p class="hero__note">Slow bar tastings every Friday</p>
+          <p class="hero__note">Seasonal drinking chocolate now pouring</p>
+          <p class="hero__note">Reserve a workspace nook via our concierge</p>
+        </div>
+      </section>
+
+      <section class="section featured" aria-labelledby="favorites-heading">
+        <div class="section__header">
+          <p class="eyebrow">Signature pours</p>
+          <h2 id="favorites-heading">Customer Favorites</h2>
+          <p>Layers of cacao, spice, and stone fruit — curated for those who savor lingering finishes.</p>
+        </div>
+        <div class="featured__grid">
+          <article class="product-card">
+            <img
+              src="https://via.placeholder.com/400x300/c4a888/192447?text=Product"
+              alt="Midnight Cacao signature latte"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Midnight Cacao Latte</h3>
+              <p>Single-origin espresso kissed with panela syrup and cocoa nib steam.</p>
+              <div class="product-card__meta">
+                <span>$6.50</span>
+                <button type="button" class="btn btn--outline">Add to Order</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <img
+              src="https://via.placeholder.com/400x300/c4a888/192447?text=Product"
+              alt="Cardamom cold brew bottle"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Cardamom Cold Brew</h3>
+              <p>18-hour brew infused with green cardamom and orange peel for a silk finish.</p>
+              <div class="product-card__meta">
+                <span>$5.75</span>
+                <button type="button" class="btn btn--outline">Add to Order</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <img
+              src="https://via.placeholder.com/400x300/c4a888/192447?text=Product"
+              alt="Smoked honey cortado"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Smoked Honey Cortado</h3>
+              <p>Velvety espresso cut with steamed milk and a smoked honey drizzle.</p>
+              <div class="product-card__meta">
+                <span>$5.25</span>
+                <button type="button" class="btn btn--outline">Add to Order</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <img
+              src="https://via.placeholder.com/400x300/c4a888/192447?text=Product"
+              alt="House-made drinking chocolate"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Condesa Drinking Chocolate</h3>
+              <p>Rich Ecuadorian chocolate whisked with oat milk and cinnamon smoke.</p>
+              <div class="product-card__meta">
+                <span>$6.00</span>
+                <button type="button" class="btn btn--outline">Add to Order</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-preview" id="story">
+        <div class="about-preview__content">
+          <p class="eyebrow">Our Story</p>
+          <h2>Slow roasted beginnings</h2>
+          <p>
+            ASADOR COFFEE started as a two-person roastery perfecting chocolate-forward espresso in a tiny garage, guided
+            by curiosity and patience.
+          </p>
+          <p>
+            Today, we pour that spirit into every cup while offering a quiet workspace for creatives, founders, and
+            neighbors who crave intentional breaks.
+          </p>
+          <p>
+            Discover the team, sourcing philosophy, and rituals that shape every pour over, latte art flourish, and bean
+            we roast.
+          </p>
+          <a class="btn" href="about.html">Learn More</a>
+        </div>
+        <div class="about-preview__media" aria-hidden="true">
+          <img
+            src="https://via.placeholder.com/400x300/c4a888/192447?text=Roastery"
+            alt=""
+            loading="lazy"
+            width="400"
+            height="300"
+          />
+        </div>
+      </section>
+
+      <section class="section visit" id="visit">
+        <div class="section__header">
+          <p class="eyebrow">Hours &amp; Location</p>
+          <h2>Visit Us</h2>
+        </div>
+        <div class="visit__grid">
+          <div>
+            <h3>Opening Hours</h3>
+            <dl>
+              <div class="visit__row">
+                <dt>Monday – Friday</dt>
+                <dd>7:00 AM – 10:00 PM</dd>
+              </div>
+              <div class="visit__row">
+                <dt>Saturday – Sunday</dt>
+                <dd>8:00 AM – 11:00 PM</dd>
+              </div>
+            </dl>
+          </div>
+          <div>
+            <h3>Contact</h3>
+            <p>123 Coffee Street, Your City</p>
+            <p>+1 (555) 123-4567</p>
+            <p>
+              <a class="link" href="mailto:hello@asadorcoffee.com">hello@asadorcoffee.com</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> ASADOR COFFEE. Crafted in small batches.</p>
+    </footer>
+
+    <script src="js/main.js" type="module"></script>
+  </body>
+</html>

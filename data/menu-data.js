@@ -1,0 +1,51 @@
+export const menuItems = [
+  {
+    id: 'midnight-cacao',
+    name: 'Midnight Cacao Espresso',
+    price: 5.5,
+    category: 'espresso',
+    notes: 'Bittersweet chocolate, burnt sugar, dried fig.',
+  },
+  {
+    id: 'amber-tonic',
+    name: 'Amber Espresso Tonic',
+    price: 6.5,
+    category: 'seasonal',
+    notes: 'Double shot over smoked citrus tonic with rosemary.',
+  },
+  {
+    id: 'walnut-latte',
+    name: 'Walnut Praline Latte',
+    price: 6,
+    category: 'espresso',
+    notes: 'House praline syrup, steamed oat milk, cacao nib dust.',
+  },
+  {
+    id: 'pour-flight',
+    name: 'Origin Pour-over Flight',
+    price: 9,
+    category: 'brew',
+    notes: 'Three 4oz pours featuring rotating single origins.',
+  },
+  {
+    id: 'velvet-chocolate',
+    name: 'Velvet Drinking Chocolate',
+    price: 5,
+    category: 'brew',
+    notes: 'Stone-ground cacao, smoked sea salt, vanilla bean.',
+  },
+  {
+    id: 'canelé',
+    name: 'Canelé de Bordeaux',
+    price: 4,
+    category: 'food',
+    notes: 'Custardy center with caramelized shell and cacao dust.',
+  },
+  {
+    id: 'savory-tart',
+    name: 'Savory Rye Tartine',
+    price: 7,
+    category: 'food',
+    notes: 'Whipped chèvre, pickled shallot, herb oil.',
+  },
+];
