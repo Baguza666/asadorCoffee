@@ -1,24 +1,3 @@
-const animatedSections = document.querySelectorAll('[data-animate]');
-
-if (animatedSections.length) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.2,
-      rootMargin: '0px 0px -10% 0px',
-    }
-  );
-
-  animatedSections.forEach((section) => observer.observe(section));
-}
-
 const modal = document.querySelector('[data-gallery-modal]');
 const modalImage = document.querySelector('[data-gallery-image]');
 const closeBtn = document.querySelector('[data-gallery-close]');

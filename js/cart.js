@@ -1,12 +1,27 @@
+import { trackEvent } from './analytics.js';
+
 const CART_STORAGE_KEY = 'asadorCart';
 const FORMATTER = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
 });
 
+const storageSupported = (() => {
+  try {
+    const testKey = '__asador_cart__';
+    window.localStorage.setItem(testKey, '1');
+    window.localStorage.removeItem(testKey);
+    return true;
+  } catch (error) {
+    console.warn('Local storage is unavailable, cart data will reset on refresh.', error);
+    return false;
+  }
+})();
+
 let cartItems = readCartFromStorage();
 let initialized = false;
 let dom = {};
+let storageWarningIssued = false;
 
 const ready = (callback) => {
   if (document.readyState === 'loading') {
@@ -17,6 +32,7 @@ const ready = (callback) => {
 };
 
 function readCartFromStorage() {
+  if (!storageSupported) return [];
   try {
     const stored = localStorage.getItem(CART_STORAGE_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -27,11 +43,18 @@ function readCartFromStorage() {
 }
 
 function saveCartToStorage(items) {
+  if (!storageSupported) return;
   try {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
   } catch (error) {
     console.error('Unable to save cart', error);
   }
+}
+
+function warnStorageLimitations() {
+  if (storageSupported || storageWarningIssued) return;
+  storageWarningIssued = true;
+  showToast('Private browsing detected. Cart resets after refresh.', 'info');
 }
 
 function cacheDom() {
@@ -187,6 +210,13 @@ export function addItemToCart(payload) {
 
   persistAndRender(`${name} added to cart`, 'success');
   triggerFabBounce();
+  trackEvent('add_to_cart', {
+    currency: 'USD',
+    value: price,
+    item_id: id,
+    item_name: name,
+    item_variant: size,
+  });
 }
 
 function updateItemQuantity(id, size, delta) {
@@ -256,7 +286,7 @@ function toggleDrawer() {
 }
 
 function renderOrderSummary() {
-  if (!dom.orderSummary || !dom.orderList || !dom.orderTotal) return;
+  if (!dom.orderSummary || !dom.orderList || !dom.orderTotal) return 0;
   dom.orderList.innerHTML = cartItems
     .map(
       (item) => `
@@ -280,15 +310,21 @@ function renderOrderSummary() {
     month: 'short',
     day: 'numeric',
   });
+  return total;
 }
 
 function openOrderSummary() {
   if (!cartItems.length || !dom.orderSummary) return;
-  renderOrderSummary();
+  const total = renderOrderSummary();
   closeDrawer();
   dom.orderSummary.hidden = false;
   dom.orderSummary.classList.add('is-visible');
   document.body.classList.add('has-order-summary');
+  trackEvent('view_order_summary', {
+    currency: 'USD',
+    value: total,
+    item_count: cartItems.length,
+  });
 }
 
 function closeOrderSummary() {
@@ -342,6 +378,7 @@ export function initCart() {
     initialized = true;
     updateUI();
     attachEvents();
+    warnStorageLimitations();
   });
 }
 

@@ -23,11 +23,11 @@
   --fs-lg: clamp(1.5rem, 1.3rem + 1vw, 2rem);
   --fs-xl: clamp(2rem, 1.5rem + 2vw, 3rem);
 
-  /* Layout */
+  /* Layout (8px rhythm) */
   --max-width: 1120px;
   --gutter: clamp(1rem, 2vw, 2.5rem);
   --radius: 4px;
-  --transition: 200ms ease;
+  --transition: 300ms ease;
 }
 
 /* Reset / Normalize ----------------------------------------------------- */
@@ -63,10 +63,21 @@ body {
   line-height: 1.6;
   color: var(--color-graphite);
   background-color: var(--color-warm-gray);
+  position: relative;
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
   opacity: 0;
   transition: opacity 320ms ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle at 15% 20%, rgba(196, 168, 136, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(25, 36, 71, 0.08), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .sr-only {
@@ -110,6 +121,7 @@ select {
   border: 1px solid var(--color-ink);
   border-radius: var(--radius);
   padding: 0.6rem 0.8rem;
+  min-height: 44px;
 }
 
 button {
@@ -233,9 +245,12 @@ p {
 }
 
 .site-nav__link {
-  padding-bottom: 0.25rem;
+  padding: 0.25rem 0;
   border-bottom: 2px solid transparent;
   transition: border-color var(--transition), color var(--transition);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .site-nav__link:hover,
@@ -408,6 +423,7 @@ p {
   text-transform: uppercase;
   border: none;
   transition: background var(--transition), transform var(--transition);
+  min-height: 44px;
 }
 
 .btn:hover,
@@ -537,6 +553,7 @@ p {
   background: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
   transition: border-color var(--transition), color var(--transition), background var(--transition);
+  min-height: 44px;
 }
 
 .menu-pill.is-active {
@@ -554,6 +571,11 @@ p {
 
 .menu-pill.is-active .menu-pill__count {
   background: rgba(25, 36, 71, 0.15);
+}
+
+.menu-pill:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
 }
 
 .menu-pill__badge {
@@ -578,7 +600,7 @@ p {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  transition: opacity 0.18s ease;
+  transition: opacity var(--transition);
 }
 
 .menu-grid.is-filtering {
@@ -660,12 +682,20 @@ p {
   padding: 0.4rem 0.85rem;
   font-size: 0.85rem;
   transition: background var(--transition), color var(--transition), border-color var(--transition);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .size-pill.is-selected {
   background: var(--color-ink);
   color: var(--color-paper);
   border-color: var(--color-ink);
+}
+
+.size-pill:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
 }
 
 .menu-card .btn {
@@ -701,6 +731,28 @@ p {
   opacity: 0.75;
 }
 
+.menu-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: rgba(25, 36, 71, 0.7);
+  padding: 1rem 0;
+}
+
+.menu-loading__spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 2px solid rgba(25, 36, 71, 0.2);
+  border-top-color: var(--color-ink);
+  animation: spin 1s linear infinite;
+}
+
+.menu-loading[hidden] {
+  display: none;
+}
+
 .menu-empty {
   margin-top: 2rem;
   text-align: center;
@@ -715,6 +767,12 @@ p {
   color: var(--color-ink);
   font-size: 1.3rem;
   margin-bottom: 0.25rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fadeUp {
@@ -1196,6 +1254,28 @@ dd {
   color: rgba(25, 36, 71, 0.7);
 }
 
+.admin-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: rgba(25, 36, 71, 0.7);
+}
+
+.admin-loading__spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 2px solid rgba(25, 36, 71, 0.2);
+  border-top-color: var(--color-ink);
+  animation: spin 1s linear infinite;
+}
+
+.admin-loading[hidden] {
+  display: none;
+}
+
 .admin-pagination {
   display: flex;
   justify-content: center;
@@ -1544,6 +1624,7 @@ body.is-locked {
   font-size: 1.1rem;
   cursor: pointer;
   color: var(--color-ink, #192447);
+  min-width: 44px;
 }
 
 .qty-btn:hover,
@@ -1557,6 +1638,11 @@ body.is-locked {
   color: rgba(25, 36, 71, 0.6);
   font-size: 1.1rem;
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon-button:hover,

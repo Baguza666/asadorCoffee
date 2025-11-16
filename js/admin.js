@@ -27,6 +27,18 @@ const CATEGORY_OPTIONS = [
   'Asador Combos',
 ];
 
+const storageSupported = (() => {
+  try {
+    const testKey = '__asador_admin__';
+    window.localStorage.setItem(testKey, '1');
+    window.localStorage.removeItem(testKey);
+    return true;
+  } catch (error) {
+    console.warn('Admin storage unavailable. Inventory changes will reset after refresh.', error);
+    return false;
+  }
+})();
+
 const root = document.querySelector('[data-admin-root]');
 const loginSection = document.querySelector('[data-admin-login]');
 const dashboardSection = document.querySelector('[data-admin-dashboard]');
@@ -67,6 +79,7 @@ const formCloseButtons = document.querySelectorAll('[data-admin-close-form]');
 const formTitle = document.querySelector('[data-admin-form-title]');
 const formEyebrow = document.querySelector('[data-admin-form-eyebrow]');
 const toastStack = document.querySelector('[data-toast-stack]');
+const adminLoadingIndicator = document.querySelector('[data-admin-loading]');
 
 const state = {
   isAuthenticated: false,
@@ -79,10 +92,15 @@ const state = {
   editingId: null,
 };
 
+let storageNoticeShown = false;
+
 const formatCurrency = (value) => `$${Number(value).toFixed(2)}`;
 const createId = () => (window.crypto?.randomUUID ? window.crypto.randomUUID() : `asador-${Date.now()}-${Math.random().toString(16).slice(2)}`);
 
 const getStoredMenu = () => {
+  if (!storageSupported) {
+    return [...seedMenuItems];
+  }
   try {
     const existing = window.localStorage.getItem(STORAGE_KEY);
     if (existing) {
@@ -97,11 +115,23 @@ const getStoredMenu = () => {
 };
 
 const persistMenu = () => {
+  if (!storageSupported) return;
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items));
   } catch (error) {
     console.error('Failed to persist menu items', error);
   }
+};
+
+const toggleAdminLoading = (isVisible) => {
+  if (!adminLoadingIndicator) return;
+  adminLoadingIndicator.hidden = !isVisible;
+};
+
+const notifyStorageLimitation = () => {
+  if (storageSupported || storageNoticeShown) return;
+  storageNoticeShown = true;
+  announce('Local storage disabled. Changes persist only while this tab stays open.');
 };
 
 const announce = (message) => {
@@ -492,6 +522,9 @@ const authenticate = () => {
   if (state.isAuthenticated) {
     loginSection?.setAttribute('hidden', 'true');
     dashboardSection?.removeAttribute('hidden');
+    toggleAdminLoading(true);
+    window.setTimeout(() => toggleAdminLoading(false), 400);
+    notifyStorageLimitation();
   } else {
     loginSection?.removeAttribute('hidden');
     dashboardSection?.setAttribute('hidden', 'true');
@@ -505,6 +538,7 @@ const init = () => {
   authenticate();
   renderStats();
   renderTable();
+  toggleAdminLoading(false);
 };
 
 loginForm?.addEventListener('submit', (event) => {

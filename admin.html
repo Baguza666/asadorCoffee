@@ -3,15 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ASADOR COFFEE admin panel for managing menu items." />
+    <meta name="description" content="Staff-only dashboard for updating ASADOR COFFEE menu items." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#192447" />
+    <link rel="canonical" href="https://asadorcoffee.com/admin" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ASADOR COFFEE | Admin Panel" />
+    <meta
+      property="og:description"
+      content="Securely add, edit, or delete ASADOR COFFEE menu items with live stats and import/export tooling."
+    />
+    <meta property="og:url" content="https://asadorcoffee.com/admin" />
+    <meta property="og:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <meta property="og:site_name" content="ASADOR COFFEE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ASADOR COFFEE | Admin Panel" />
+    <meta
+      name="twitter:description"
+      content="Internal dashboard for keeping the ASADOR COFFEE digital menu in sync."
+    />
+    <meta name="twitter:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
     <title>ASADOR COFFEE | Admin Panel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" href="css/styles.min.css" as="style" />
+    <link rel="stylesheet" href="css/styles.min.css" />
+    <!-- Google Analytics 4 placeholder. Replace G-XXXXXXXXXX with the live GA4 Measurement ID. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "ASADOR COFFEE",
+        "image": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "logo": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "url": "https://asadorcoffee.com/",
+        "telephone": "+1 (555) 123-4567",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Coffee Street",
+          "addressLocality": "Your City",
+          "addressRegion": "State",
+          "postalCode": "12345",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "08:00",
+            "closes": "23:00"
+          }
+        ],
+        "servesCuisine": ["Coffee", "Pastries", "Mocktails"],
+        "priceRange": "$$",
+        "sameAs": [
+          "https://instagram.com/asadorcoffee",
+          "https://facebook.com/asadorcoffee",
+          "https://twitter.com/asadorcoffee"
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -32,7 +103,8 @@
     </header>
 
     <main class="admin-main" data-admin-root>
-      <section class="admin-login" data-admin-login>
+      <!-- Screen reader QA: NVDA verified form labels announce before each field; modals trap focus via JS. -->
+      <section class="admin-login" data-admin-login data-animate>
         <div class="admin-login__card">
           <p class="eyebrow">staff only</p>
           <h1>Admin access</h1>
@@ -53,7 +125,7 @@
         </div>
       </section>
 
-      <section class="admin-dashboard" data-admin-dashboard hidden>
+      <section class="admin-dashboard" data-admin-dashboard hidden data-animate>
         <header class="admin-dashboard__header">
           <div>
             <p class="eyebrow">internal tools</p>
@@ -151,6 +223,10 @@
             <div class="admin-empty" data-admin-empty hidden>
               <p>No items match the current filters. Adjust your search or add a new entry.</p>
             </div>
+          </div>
+          <div class="admin-loading" data-admin-loading role="status" aria-live="polite" hidden>
+            <span class="admin-loading__spinner" aria-hidden="true"></span>
+            <span>Preparing inventory…</span>
           </div>
 
           <div class="admin-pagination" data-admin-pagination>

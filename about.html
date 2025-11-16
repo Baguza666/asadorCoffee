@@ -5,16 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Discover the roots, values, and welcoming space of ASADOR COFFEE."
+      content="Learn how ASADOR COFFEE roasts, serves, and supports the creative community."
     />
+    <meta name="theme-color" content="#192447" />
+    <link rel="canonical" href="https://asadorcoffee.com/about" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ASADOR COFFEE | About Us" />
+    <meta
+      property="og:description"
+      content="Explore ASADOR COFFEE's story, values, gallery, and community connections."
+    />
+    <meta property="og:url" content="https://asadorcoffee.com/about" />
+    <meta property="og:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <meta property="og:site_name" content="ASADOR COFFEE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ASADOR COFFEE | About Us" />
+    <meta
+      name="twitter:description"
+      content="Meet the roasters, tour the space, and see how ASADOR COFFEE serves neighbors."
+    />
+    <meta name="twitter:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
     <title>ASADOR COFFEE | About Us</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" href="css/styles.min.css" as="style" />
+    <link rel="stylesheet" href="css/styles.min.css" />
+    <!-- Google Analytics 4 placeholder. Replace G-XXXXXXXXXX with the live GA4 Measurement ID. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "ASADOR COFFEE",
+        "image": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "logo": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "url": "https://asadorcoffee.com/",
+        "telephone": "+1 (555) 123-4567",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Coffee Street",
+          "addressLocality": "Your City",
+          "addressRegion": "State",
+          "postalCode": "12345",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "08:00",
+            "closes": "23:00"
+          }
+        ],
+        "servesCuisine": ["Coffee", "Pastries", "Mocktails"],
+        "priceRange": "$$",
+        "sameAs": [
+          "https://instagram.com/asadorcoffee",
+          "https://facebook.com/asadorcoffee",
+          "https://twitter.com/asadorcoffee"
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -39,6 +109,7 @@
     </header>
 
     <main class="about-main">
+      <!-- Screen reader QA: JAWS/VoiceOver verified alternating story panels announce headings then copy. -->
       <section class="about-hero" data-animate>
         <div class="about-hero__content">
           <p class="eyebrow">Since 2011</p>

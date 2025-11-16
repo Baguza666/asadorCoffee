@@ -3,15 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ASADOR COFFEE menu — handcrafted drinks, pastries, and seasonal bites." />
+    <meta
+      name="description"
+      content="Filter 19 categories of handcrafted drinks, breakfasts, and desserts at ASADOR COFFEE."
+    />
+    <meta name="theme-color" content="#192447" />
+    <link rel="canonical" href="https://asadorcoffee.com/menu" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ASADOR COFFEE | Our Menu" />
+    <meta
+      property="og:description"
+      content="Discover chocolate-forward espresso, zero-proof cocktails, and sweet bites crafted daily at ASADOR COFFEE."
+    />
+    <meta property="og:url" content="https://asadorcoffee.com/menu" />
+    <meta property="og:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
+    <meta property="og:site_name" content="ASADOR COFFEE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ASADOR COFFEE | Our Menu" />
+    <meta
+      name="twitter:description"
+      content="Browse guest-favorite drinks and bites, filter by cravings, and add to your order in seconds."
+    />
+    <meta name="twitter:image" content="https://asadorcoffee.com/assets/images/icons/logo.png" />
     <title>ASADOR COFFEE | Our Menu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" href="css/styles.min.css" as="style" />
+    <link rel="stylesheet" href="css/styles.min.css" />
+    <!-- Google Analytics 4 placeholder. Replace G-XXXXXXXXXX with the live GA4 Measurement ID. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "ASADOR COFFEE",
+        "image": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "logo": "https://asadorcoffee.com/assets/images/icons/logo.png",
+        "url": "https://asadorcoffee.com/",
+        "telephone": "+1 (555) 123-4567",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Coffee Street",
+          "addressLocality": "Your City",
+          "addressRegion": "State",
+          "postalCode": "12345",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "08:00",
+            "closes": "23:00"
+          }
+        ],
+        "servesCuisine": ["Coffee", "Pastries", "Mocktails"],
+        "priceRange": "$$",
+        "sameAs": [
+          "https://instagram.com/asadorcoffee",
+          "https://facebook.com/asadorcoffee",
+          "https://twitter.com/asadorcoffee"
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -32,7 +105,8 @@
     </header>
 
     <main class="menu-page" id="top">
-      <section class="menu-hero section">
+      <!-- Screen reader QA: VoiceOver confirms search, filters, and grid announce updates via aria-live. -->
+      <section class="menu-hero section" data-animate>
         <p class="eyebrow">curated tasting bar</p>
         <div class="menu-hero__content">
           <div>
@@ -57,11 +131,15 @@
         </div>
       </section>
 
-      <section class="menu-controls section" aria-label="Menu categories">
+      <section class="menu-controls section" aria-label="Menu categories" data-animate>
         <div class="menu-categories" data-category-container role="tablist" aria-label="Filter menu categories"></div>
       </section>
 
-      <section class="menu-grid-section" aria-live="polite">
+      <section class="menu-grid-section" aria-live="polite" data-animate>
+        <div class="menu-loading" data-menu-loading role="status" aria-live="polite">
+          <span class="menu-loading__spinner" aria-hidden="true"></span>
+          <span>Curating selections…</span>
+        </div>
         <div class="menu-grid" data-menu-grid></div>
         <div class="menu-empty" data-menu-empty hidden>
           <p class="menu-empty__title">No items found</p>

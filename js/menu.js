@@ -1,11 +1,13 @@
 import { menuItems as seedMenuItems } from '../data/menu-data.js';
 import { addItemToCart } from './cart.js';
+import { trackEvent } from './analytics.js';
 
 const categoryContainer = document.querySelector('[data-category-container]');
 const grid = document.querySelector('[data-menu-grid]');
 const emptyState = document.querySelector('[data-menu-empty]');
 const searchForm = document.querySelector('[data-menu-search]');
 const searchInput = searchForm?.querySelector('input');
+const loadingIndicator = document.querySelector('[data-menu-loading]');
 
 const MENU_STORAGE_KEY = 'asadorMenuItems';
 
@@ -74,6 +76,16 @@ const debounce = (fn, delay = 300) => {
 
 const formatCurrency = (value) => `$${value.toFixed(2)}`;
 
+const setLoadingState = (isLoading) => {
+  grid?.setAttribute('aria-busy', String(isLoading));
+  if (!loadingIndicator) return;
+  if (isLoading) {
+    loadingIndicator.hidden = false;
+  } else {
+    loadingIndicator.hidden = true;
+  }
+};
+
 const addToCart = (itemId, sizeLabel) => {
   const item = menuItems.find((entry) => entry.id === itemId);
   if (!item) return;
@@ -141,6 +153,7 @@ const createSizePills = (item) => {
 const renderItems = () => {
   if (!grid) return;
 
+  setLoadingState(true);
   const filteredItems = menuItems.filter((item) => {
     const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
     const searchableText = `${item.name} ${item.description}`.toLowerCase();
@@ -180,13 +193,14 @@ const renderItems = () => {
     })
     .join('');
 
-  if (filteredItems.length === 0) {
-    emptyState?.removeAttribute('hidden');
-  } else {
-    emptyState?.setAttribute('hidden', 'true');
+  if (emptyState) {
+    emptyState.hidden = filteredItems.length > 0;
   }
 
-  window.setTimeout(() => grid.classList.remove('is-filtering'), 180);
+  window.setTimeout(() => {
+    grid.classList.remove('is-filtering');
+    setLoadingState(false);
+  }, 220);
 };
 
 const handleCategoryClick = (event) => {
@@ -196,6 +210,10 @@ const handleCategoryClick = (event) => {
   activeCategory = target.dataset.category;
   renderCategories();
   renderItems();
+  trackEvent('menu_category_click', {
+    category: activeCategory,
+    item_count: categoryCounts[activeCategory] || menuItems.length,
+  });
 };
 
 const handleSizeSelection = (event) => {
