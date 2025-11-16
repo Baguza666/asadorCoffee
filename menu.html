@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ASADOR COFFEE menu — signature drinks and seasonal bites." />
+    <meta name="description" content="ASADOR COFFEE menu — handcrafted drinks, pastries, and seasonal bites." />
     <title>ASADOR COFFEE | Our Menu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,7 @@
   <body>
     <header class="site-header">
       <div class="brand">
-        <a href="/">
+        <a href="/" aria-label="ASADOR COFFEE home">
           <img src="https://asadorcoffee.com/assets/images/icons/logo.png" alt="ASADOR COFFEE" class="brand__logo" />
         </a>
         <div class="brand__text">
@@ -31,22 +31,42 @@
       </nav>
     </header>
 
-    <main>
-      <section class="page-header">
-        <p class="eyebrow">slow bar curation</p>
-        <h1>Pour-over flight, espresso lab, crafted bites.</h1>
-        <p>Each drink is roasted in-house, brewed to order, and paired with thoughtful accompaniments.</p>
+    <main class="menu-page" id="top">
+      <section class="menu-hero section">
+        <p class="eyebrow">curated tasting bar</p>
+        <div class="menu-hero__content">
+          <div>
+            <h1>Our Menu</h1>
+            <p>
+              Hand-pulled espresso, nuanced mocktails, and petite bites are crafted to order. Filter the collection or search
+              for your current craving.
+            </p>
+          </div>
+          <form class="menu-search" role="search" aria-label="Menu search" data-menu-search>
+            <label for="menu-search-input" class="sr-only">Search menu items</label>
+            <input
+              type="search"
+              id="menu-search-input"
+              name="menu-search"
+              placeholder="Search by name or notes"
+              autocomplete="off"
+              inputmode="search"
+            />
+            <span aria-hidden="true" class="menu-search__icon">⌕</span>
+          </form>
+        </div>
       </section>
 
-      <section class="menu" id="menu">
-        <div class="menu__filters" role="tablist" aria-label="Menu categories">
-          <button class="chip is-active" data-category="all">All</button>
-          <button class="chip" data-category="espresso">Espresso</button>
-          <button class="chip" data-category="brew">Slow Brew</button>
-          <button class="chip" data-category="seasonal">Seasonal</button>
-          <button class="chip" data-category="food">Bites</button>
+      <section class="menu-controls section" aria-label="Menu categories">
+        <div class="menu-categories" data-category-container role="tablist" aria-label="Filter menu categories"></div>
+      </section>
+
+      <section class="menu-grid-section" aria-live="polite">
+        <div class="menu-grid" data-menu-grid></div>
+        <div class="menu-empty" data-menu-empty hidden>
+          <p class="menu-empty__title">No items found</p>
+          <p>Try adjusting your search or selecting a different category to explore more of the menu.</p>
         </div>
-        <div class="menu__grid" aria-live="polite"></div>
       </section>
     </main>
 
