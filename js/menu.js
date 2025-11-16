@@ -1,4 +1,4 @@
-import { menuItems } from '../data/menu-data.js';
+import { menuItems as seedMenuItems } from '../data/menu-data.js';
 import { addItemToCart } from './cart.js';
 
 const categoryContainer = document.querySelector('[data-category-container]');
@@ -6,6 +6,29 @@ const grid = document.querySelector('[data-menu-grid]');
 const emptyState = document.querySelector('[data-menu-empty]');
 const searchForm = document.querySelector('[data-menu-search]');
 const searchInput = searchForm?.querySelector('input');
+
+const MENU_STORAGE_KEY = 'asadorMenuItems';
+
+const loadMenuInventory = () => {
+  try {
+    const stored = window.localStorage.getItem(MENU_STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    window.localStorage.setItem(MENU_STORAGE_KEY, JSON.stringify(seedMenuItems));
+    return [...seedMenuItems];
+  } catch (error) {
+    console.warn('Unable to read stored menu data, using defaults.', error);
+    try {
+      window.localStorage.setItem(MENU_STORAGE_KEY, JSON.stringify(seedMenuItems));
+    } catch (storageError) {
+      console.error('Failed to seed menu data', storageError);
+    }
+    return [...seedMenuItems];
+  }
+};
+
+const menuItems = loadMenuInventory();
 
 const CATEGORIES = [
   { label: 'All', value: 'all' },

@@ -31,45 +31,214 @@
       </nav>
     </header>
 
-    <main>
-      <section class="page-header">
-        <p class="eyebrow">internal</p>
-        <h1>Admin panel</h1>
-        <p>Manage menu inventory and featured highlights from one quiet dashboard.</p>
-      </section>
-
-      <section class="admin-panel">
-        <form class="admin-form" id="admin-form">
-          <div class="form-group">
-            <label for="item-name">Item name</label>
-            <input id="item-name" name="name" type="text" required />
-          </div>
-          <div class="form-group">
-            <label for="item-price">Price (USD)</label>
-            <input id="item-price" name="price" type="number" step="0.5" min="0" required />
-          </div>
-          <div class="form-group">
-            <label for="item-category">Category</label>
-            <select id="item-category" name="category" required>
-              <option value="espresso">Espresso</option>
-              <option value="brew">Slow Brew</option>
-              <option value="seasonal">Seasonal</option>
-              <option value="food">Bites</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="item-notes">Tasting notes</label>
-            <textarea id="item-notes" name="notes" rows="3" required></textarea>
-          </div>
-          <button class="btn" type="submit">Save item</button>
-        </form>
-
-        <div class="admin-list">
-          <h2>Draft menu</h2>
-          <ul id="admin-items"></ul>
+    <main class="admin-main" data-admin-root>
+      <section class="admin-login" data-admin-login>
+        <div class="admin-login__card">
+          <p class="eyebrow">staff only</p>
+          <h1>Admin access</h1>
+          <p>Enter the daily passphrase to continue managing the digital menu.</p>
+          <form data-admin-login-form>
+            <label class="form-label" for="admin-password">Access code</label>
+            <input
+              type="password"
+              id="admin-password"
+              name="admin-password"
+              autocomplete="current-password"
+              required
+              minlength="6"
+            />
+            <p class="form-hint" data-admin-login-error hidden>Incorrect code. Please try again or verify with management.</p>
+            <button class="btn" type="submit">Login</button>
+          </form>
         </div>
       </section>
+
+      <section class="admin-dashboard" data-admin-dashboard hidden>
+        <header class="admin-dashboard__header">
+          <div>
+            <p class="eyebrow">internal tools</p>
+            <h1>ASADOR COFFEE — Admin Panel</h1>
+            <p>Update the menu, review stats, and keep the bar team aligned.</p>
+          </div>
+          <div class="admin-dashboard__actions">
+            <button class="btn btn--ghost btn--light" type="button" data-admin-export>Export JSON</button>
+            <label class="btn btn--ghost btn--light admin-import" for="admin-import-input" role="button" tabindex="0">Import JSON</label>
+            <input type="file" id="admin-import-input" accept="application/json" data-admin-import hidden />
+            <button class="btn btn--ghost btn--light" type="button" data-admin-logout>Logout</button>
+          </div>
+        </header>
+
+        <section class="admin-stats">
+          <div class="admin-stats__grid">
+            <article class="admin-stats__card">
+              <p class="eyebrow">Total items</p>
+              <h3 data-admin-stat-total>0</h3>
+              <p>Live items currently visible on the public menu.</p>
+            </article>
+            <article class="admin-stats__card">
+              <p class="eyebrow">Available today</p>
+              <h3 data-admin-stat-available>0</h3>
+              <p>Items marked as available for guests.</p>
+            </article>
+            <article class="admin-stats__card">
+              <p class="eyebrow">Categories</p>
+              <h3 data-admin-stat-categories>0</h3>
+              <p>Active categories represented in the menu.</p>
+            </article>
+          </div>
+          <div class="admin-stats__categories">
+            <div class="admin-stats__categories-header">
+              <h3>Items per category</h3>
+              <p>Snapshot of how offerings are distributed.</p>
+            </div>
+            <ul data-admin-category-stats></ul>
+          </div>
+        </section>
+
+        <section class="admin-management">
+          <div class="admin-management__top">
+            <div>
+              <p class="eyebrow">Menu items</p>
+              <h2>Inventory</h2>
+            </div>
+            <button class="btn" type="button" data-admin-open-add>+ Add New Item</button>
+          </div>
+          <div class="admin-management__filters">
+            <label class="form-label" for="admin-search">Search</label>
+            <input
+              id="admin-search"
+              type="search"
+              placeholder="Search by name or category"
+              data-admin-search
+              aria-label="Search menu items"
+            />
+            <label class="form-label" for="admin-filter">Category</label>
+            <select id="admin-filter" data-admin-filter aria-label="Filter by category">
+              <option value="all">All categories</option>
+            </select>
+          </div>
+
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th scope="col">Image</th>
+                  <th scope="col">
+                    <button class="sort-button" type="button" data-sort="name">
+                      Name
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button class="sort-button" type="button" data-sort="category">
+                      Category
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button class="sort-button" type="button" data-sort="price">
+                      Price
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">Sizes</th>
+                  <th scope="col">Availability</th>
+                  <th scope="col" class="admin-table__actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody data-admin-table-body></tbody>
+            </table>
+            <div class="admin-empty" data-admin-empty hidden>
+              <p>No items match the current filters. Adjust your search or add a new entry.</p>
+            </div>
+          </div>
+
+          <div class="admin-pagination" data-admin-pagination>
+            <button class="btn btn--ghost" type="button" data-page-prev disabled aria-label="Previous page">Prev</button>
+            <span data-page-status>Page 1</span>
+            <button class="btn btn--ghost" type="button" data-page-next disabled aria-label="Next page">Next</button>
+          </div>
+        </section>
+      </section>
     </main>
+
+    <div class="admin-modal" data-admin-form-modal hidden aria-hidden="true">
+      <div class="admin-modal__panel" role="dialog" aria-modal="true" aria-labelledby="admin-form-title">
+        <div class="admin-modal__header">
+          <div>
+            <p class="eyebrow" data-admin-form-eyebrow>New item</p>
+            <h2 id="admin-form-title" data-admin-form-title>Add Menu Item</h2>
+          </div>
+          <button class="icon-button" type="button" data-admin-close-form aria-label="Close form">&times;</button>
+        </div>
+        <form data-admin-item-form>
+          <input type="hidden" name="itemId" />
+          <label class="form-label" for="item-name">Name</label>
+          <input id="item-name" name="name" type="text" required />
+
+          <label class="form-label" for="item-description">Description</label>
+          <textarea id="item-description" name="description" rows="3" required></textarea>
+
+          <label class="form-label" for="item-category">Category</label>
+          <select id="item-category" name="category" required></select>
+
+          <label class="form-label" for="item-price">Base price (USD)</label>
+          <input id="item-price" name="price" type="number" step="0.5" min="0" required />
+
+          <fieldset class="size-fieldset">
+            <legend>Sizes &amp; pricing</legend>
+            <p>Add prices for each size you want to offer.</p>
+            <div class="size-grid">
+              <label class="size-control">
+                <input type="checkbox" data-size-checkbox="Small" />
+                <span>Small</span>
+                <input type="number" step="0.5" min="0" data-size-price="Small" placeholder="0.00" disabled />
+              </label>
+              <label class="size-control">
+                <input type="checkbox" data-size-checkbox="Medium" />
+                <span>Medium</span>
+                <input type="number" step="0.5" min="0" data-size-price="Medium" placeholder="0.00" disabled />
+              </label>
+              <label class="size-control">
+                <input type="checkbox" data-size-checkbox="Large" />
+                <span>Large</span>
+                <input type="number" step="0.5" min="0" data-size-price="Large" placeholder="0.00" disabled />
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="form-label" for="item-image">Image URL</label>
+          <input id="item-image" name="image" type="url" placeholder="https://" required />
+
+          <label class="checkbox">
+            <input type="checkbox" name="available" checked />
+            <span>Available for guests</span>
+          </label>
+
+          <div class="admin-modal__actions">
+            <button class="btn btn--ghost" type="button" data-admin-close-form>Cancel</button>
+            <button class="btn" type="submit">Save Item</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="admin-modal" data-admin-delete-modal hidden aria-hidden="true">
+      <div class="admin-modal__panel" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+        <div class="admin-modal__header">
+          <div>
+            <p class="eyebrow">Confirm delete</p>
+            <h2 id="delete-modal-title">Remove item</h2>
+          </div>
+          <button class="icon-button" type="button" data-admin-close-delete aria-label="Close dialog">&times;</button>
+        </div>
+        <p data-admin-delete-message>Are you sure you want to delete this item?</p>
+        <div class="admin-modal__actions">
+          <button class="btn btn--ghost" type="button" data-admin-close-delete>Cancel</button>
+          <button class="btn btn--danger" type="button" data-admin-confirm-delete>Delete</button>
+        </div>
+      </div>
+    </div>
 
     <button class="cart-fab" type="button" data-cart-toggle aria-label="Open cart">
       <span class="cart-fab__icon" aria-hidden="true">
