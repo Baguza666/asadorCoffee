@@ -1,4 +1,5 @@
 import { menuItems } from '../data/menu-data.js';
+import { addItemToCart } from './cart.js';
 
 const categoryContainer = document.querySelector('[data-category-container]');
 const grid = document.querySelector('[data-menu-grid]');
@@ -6,7 +7,6 @@ const emptyState = document.querySelector('[data-menu-empty]');
 const searchForm = document.querySelector('[data-menu-search]');
 const searchInput = searchForm?.querySelector('input');
 
-const CART_KEY = 'asadorCart';
 const CATEGORIES = [
   { label: 'All', value: 'all' },
   { label: 'Breakfasts', value: 'Breakfasts' },
@@ -51,36 +51,21 @@ const debounce = (fn, delay = 300) => {
 
 const formatCurrency = (value) => `$${value.toFixed(2)}`;
 
-const getCart = () => {
-  try {
-    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  } catch (error) {
-    console.error('Unable to read cart from storage', error);
-    return [];
-  }
-};
-
-const saveCart = (items) => {
-  localStorage.setItem(CART_KEY, JSON.stringify(items));
-};
-
 const addToCart = (itemId, sizeLabel) => {
   const item = menuItems.find((entry) => entry.id === itemId);
   if (!item) return;
 
-  const cart = getCart();
   const keySize = sizeLabel || (item.sizes?.[0]?.name ?? 'Standard');
   const selectedSize = item.sizes?.find((size) => size.name === keySize);
   const price = selectedSize ? selectedSize.price : item.price;
 
-  const existing = cart.find((cartItem) => cartItem.id === itemId && cartItem.size === keySize);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ id: itemId, name: item.name, size: keySize, price, quantity: 1 });
-  }
-
-  saveCart(cart);
+  addItemToCart({
+    id: item.id,
+    name: item.name,
+    size: keySize,
+    price,
+    image: item.image,
+  });
 };
 
 const renderCategories = () => {

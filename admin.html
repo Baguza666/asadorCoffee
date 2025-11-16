@@ -71,6 +71,83 @@
       </section>
     </main>
 
+    <button class="cart-fab" type="button" data-cart-toggle aria-label="Open cart">
+      <span class="cart-fab__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="presentation">
+          <path
+            fill="currentColor"
+            d="M7 6h-2.5a1 1 0 0 0 0 2H7l1.2 6.4a2 2 0 0 0 2 1.6h6.6a2 2 0 0 0 1.9-1.4l1.7-6.2H8.3zM9 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm7.5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"
+          />
+        </svg>
+      </span>
+      <span class="cart-fab__count" data-cart-count>0</span>
+    </button>
+
+    <div class="cart-overlay" data-cart-overlay hidden></div>
+    <aside
+      class="cart-drawer"
+      data-cart-drawer
+      role="dialog"
+      aria-labelledby="cart-title"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="cart-drawer__header">
+        <div>
+          <p class="eyebrow">Current order</p>
+          <h2 id="cart-title">Your Cart</h2>
+        </div>
+        <button class="icon-button" type="button" data-cart-close aria-label="Close cart">&times;</button>
+      </div>
+      <div class="cart-drawer__body">
+        <div class="cart-empty" data-cart-empty>
+          <p>Your cart is empty.</p>
+          <a class="link" href="menu.html">Browse the menu</a>
+        </div>
+        <ul class="cart-list" data-cart-items role="list" hidden></ul>
+      </div>
+      <div class="cart-drawer__footer">
+        <div class="cart-summary">
+          <span>Subtotal</span>
+          <strong data-cart-subtotal>$0.00</strong>
+        </div>
+        <div class="cart-footer__actions">
+          <button class="btn btn--ghost" type="button" data-cart-clear disabled>Clear Cart</button>
+          <button class="btn" type="button" data-cart-staff disabled>Show to Staff</button>
+        </div>
+      </div>
+    </aside>
+
+    <section
+      class="order-summary"
+      data-order-summary
+      hidden
+      aria-labelledby="order-summary-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="order-summary__panel">
+        <header>
+          <p class="eyebrow">Staff view</p>
+          <div class="order-summary__title-row">
+            <h2 id="order-summary-title">Order Summary</h2>
+            <time data-order-timestamp></time>
+          </div>
+        </header>
+        <div class="order-summary__list" data-order-summary-list></div>
+        <div class="order-summary__total">
+          <span>Total</span>
+          <strong data-order-total>$0.00</strong>
+        </div>
+        <div class="order-summary__actions">
+          <button class="btn btn--ghost" type="button" data-order-edit>Edit Order</button>
+          <button class="btn" type="button" data-order-new>Start New Order</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="toast-stack" data-toast-stack aria-live="assertive" aria-atomic="true"></div>
+
     <footer class="site-footer">
       <p>&copy; <span id="year"></span> ASADOR COFFEE. Crafted in small batches.</p>
     </footer>

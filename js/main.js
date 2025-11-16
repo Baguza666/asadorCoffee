@@ -1,3 +1,5 @@
+import './cart.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('is-loaded');
   const yearEl = document.getElementById('year');
